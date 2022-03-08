@@ -1,2 +1,2 @@
-# EAA
+# EEA
 Group 7
