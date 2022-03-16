@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
-from main import Route
+from engine import Route
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
@@ -14,11 +14,14 @@ def index():
             if len(address) > 0:
                 addresses.append(address)
         print(addresses)
-        data = None
-        Route()
+        data = Route(addresses).addresses
         return render_template('index.html', data=data)
 
     return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+# TODO
+# Zorgen dat alle print statements in de pretty print functie in Route() niet printen maar returnen zodat het in de index.html kan worden laten zien

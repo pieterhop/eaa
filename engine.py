@@ -15,14 +15,14 @@ PENALTY_VALUE = 1000
 
 
 class Route:
-    def __init__(self):
-        self.main()
+    def __init__(self, addresses):
+        self.addresses = self.main(addresses)
 
 
-    def create_data_model(self):
+    def create_data_model(self, addresses):
         """Stores the data for the problem."""
         data = {}
-        data['time_matrix'] = Matrix().duration_matrix
+        data['time_matrix'] = Matrix(addresses).duration_matrix
         # data['time_matrix'] = [
         #     [0, 6, 9, 8, 7, 3, 6, 2, 3, 2, 6, 6, 4, 4, 5, 9, 7],
         #     [6, 0, 8, 3, 2, 6, 8, 4, 8, 8, 13, 7, 5, 8, 12, 10, 14],
@@ -101,9 +101,9 @@ class Route:
         print('Total time of all routes: {}min'.format(total_time))
 
 
-    def main(self):
+    def main(self, addresses):
         """Solve the VRP with time windows."""
-        data = self.create_data_model()
+        data = self.create_data_model(addresses)
         manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']), data['num_vehicles'], data['depot'])
         routing = pywrapcp.RoutingModel(manager)
 
@@ -158,9 +158,9 @@ class Route:
         solution = routing.SolveWithParameters(search_parameters)
 
         if solution:
-            self.print_solution(data, manager, routing, solution)
+            return self.print_solution(data, manager, routing, solution)
         else:
-            print('No solution found!')
+            return 'No solution found!'
 
 
 
@@ -177,18 +177,18 @@ class Matrix:
     def create_data(self, addresses=None):
         """Creates the data."""
 
-        def get_addresses():
-            addresses = []
-            with open('addresses.txt') as f:
-                lines = f.readlines()
-                for line in lines:
-                    address = line.replace(',', ' ').replace(' ', '+').replace('++', '+').replace('\n', '')
-                    addresses.append(address)
-            return addresses
+        # def get_addresses():
+        #     addresses = []
+        #     with open('addresses.txt') as f:
+        #         lines = f.readlines()
+        #         for line in lines:
+        #             address = line.replace(',', ' ').replace(' ', '+').replace('++', '+').replace('\n', '')
+        #             addresses.append(address)
+        #     return addresses
 
         data = {}
         data['API_key'] = os.getenv('KEY')
-        data['addresses'] = get_addresses()
+        data['addresses'] = addresses
         return data
 
 
@@ -242,6 +242,3 @@ class Matrix:
             row_list = [(row['elements'][j]['duration']['value']/60) for j in range(len(row['elements']))]
             duration_matrix.append(row_list)
         return duration_matrix
-
-
-Route()
