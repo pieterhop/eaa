@@ -41,9 +41,12 @@
         </button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    {% if data %}
-    <h1>Result</h1>
-    <p>Status: success</p>
+    {% if res %}
+        <h1>Result</h1>
+        <p>Status: success</p>
+        {% for result in res %}
+            <p>{{ result }}</p>
+        {% endfor %}
     {% endif %}
 
     <script>

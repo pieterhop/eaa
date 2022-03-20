@@ -14,8 +14,8 @@ def index():
             if len(address) > 0:
                 addresses.append(address)
         print(addresses)
-        data = Route(addresses).addresses
-        return render_template('index.html', data=data)
+        res = Route(addresses).addresses
+        return render_template('index.html', res=res)
 
     return render_template('index.html')
 
