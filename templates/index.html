@@ -13,37 +13,60 @@
     <h1>Address list</h1>
     <form onsubmit="setNumberValue()" method="POST" action="{{ url_for('index') }}" id="mainForm">
         <div class="container1">
+            <h6>Address 1</h6>
             <div class="form-group">
                 <input type="text" class="form-control" id="address0" name="address0" placeholder="Enter address">
             </div>
             <br>
+            <h6>Address 2</h6>
             <div class="form-group">
                 <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter address">
             </div>
             <br>
+            <h6>Address 3</h6>
             <div class="form-group">
                 <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter address">
             </div>
             <br>
+            <h6>Address 4</h6>
             <div class="form-group">
                 <input type="text" class="form-control" id="address3" name="address3" placeholder="Enter address">
             </div>
             <br>
+            <h6>Address 5</h6>
             <div class="form-group">
                 <input type="text" class="form-control" id="address4" name="address4" placeholder="Enter address">
             </div>
             <br>
             <input type="hidden" name="numberValue" id="NumberValue" value="5">
         </div>
-        <br>
-        <button class="btn btn-primary add_form_field">Add Address &nbsp; 
+        <button class="btn btn-primary add_form_field">Add Address &nbsp;
             <span style="font-size:16px; font-weight:bold;">+ </span>
         </button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <br><br>
+        <div class="form-group">
+            <h6>Fleet size</h6>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="vehicles" name="vehicles" value="5" placeholder="Number of vehicles">
+            </div>
+            <br>
+            <h6>Allowed vehicle waiting time</h6>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="waitingtime" name="waitingtime" value="30" placeholder="Allowed waiting time">
+            </div>
+            <br>
+            <h6>Max vehicle shift duration</h6>
+            <div class="col-md-4">
+                <input type="number" class="form-control" id="maxshifttime" name="maxshifttime" value="420" placeholder="Max shift time">
+            </div>
+            <br>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br><br>
     </form>
     {% if res %}
         <h1>Result</h1>
         <p>Status: success</p>
+        <h4>Routes</h4>
         {% for result in res %}
             <p>{{ result }}</p>
         {% endfor %}
@@ -59,7 +82,7 @@
             $(add_button).click(function(e) {
                 e.preventDefault();
                 if (x < max_fields) {
-                    $(wrapper).append(`<div><div class="form-group"><input type="text" class="form-control" id="address${x}" name="address${x}" placeholder="Enter address"></div><a href="#" class="delete">Delete</a></div>`);
+                    $(wrapper).append(`<div><h6>Address ${x+1}</h6><div class="form-group"><input type="text" class="form-control" id="address${x}" name="address${x}" placeholder="Enter address"></div><a href="#" class="delete">Delete</a><br><br></div>`);
                     x++;
                 } else {
                     alert('You Reached the limits')
@@ -74,7 +97,6 @@
         });
 
         function setNumberValue() {
-            alert(`There are ${x} addresses in this form.`);
             $("#NumberValue").value = x;
         }
     </script>

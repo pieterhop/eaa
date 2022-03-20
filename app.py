@@ -8,12 +8,17 @@ app.config['SECRET_KEY'] = 'your secret key'
 def index():
     if request.method == 'POST':
         number = int(request.form['numberValue'])
+        data = {
+            'vehicles': int(request.form['vehicles']),
+            'waitingtime': int(request.form['waitingtime']),
+            'maxshifttime': int(request.form['maxshifttime'])
+        }
         addresses = []
         for i in range(0, number):
             address = str(request.form[f'address{i}'])
             if len(address) > 0:
                 addresses.append(address)
-        res = Route(addresses).addresses
+        res = Route(addresses, data).addresses
         return render_template('index.html', res=res)
 
     return render_template('index.html')
