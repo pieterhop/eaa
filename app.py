@@ -13,7 +13,6 @@ def index():
             address = str(request.form[f'address{i}'])
             if len(address) > 0:
                 addresses.append(address)
-        print(addresses)
         res = Route(addresses).addresses
         return render_template('index.html', res=res)
 
@@ -21,7 +20,3 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# TODO
-# Zorgen dat alle print statements in de pretty print functie in Route() niet printen maar returnen zodat het in de index.html kan worden laten zien
