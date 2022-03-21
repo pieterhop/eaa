@@ -9,67 +9,121 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-<body style="margin: 20px 50px 20px 50px;">
-    <h1>Address list</h1>
-    <form onsubmit="setNumberValue()" method="POST" action="{{ url_for('index') }}" id="mainForm">
-        <div class="container1">
-            <h6>Address 1</h6>
-            <div class="form-group">
-                <input type="text" class="form-control" id="address0" name="address0" placeholder="Enter address">
+<body>
+    <div class="container" style="margin: 20px 50px 20px 50px;">
+        <h1>Route planner</h1>
+        <form onsubmit="setNumberValue()" method="POST" action="{{ url_for('index') }}" id="mainForm">
+            <h4>Address list</h4>
+            <div class="container1">
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="address0">Address 1</label>
+                        <input type="text" class="form-control" id="address0" name="address0" placeholder="Enter address">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="start0">Availability</label>
+                        <input type="number" class="form-control" id="start0" name="start0" placeholder="Start">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="end0"> </label>
+                        <input type="number" class="form-control" id="end0" name="end0" placeholder="End">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="address1">Address 2</label>
+                        <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter address">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="start1">Availability</label>
+                        <input type="number" class="form-control" id="start1" name="start1" placeholder="Start">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="end1"> </label>
+                        <input type="number" class="form-control" id="end1" name="end1" placeholder="End">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="address0">Address 3</label>
+                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter address">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="start2">Availability</label>
+                        <input type="number" class="form-control" id="start2" name="start2" placeholder="Start">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="end2"> </label>
+                        <input type="number" class="form-control" id="end2" name="end2" placeholder="End">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="address3">Address 4</label>
+                        <input type="text" class="form-control" id="address3" name="address3" placeholder="Enter address">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="start3">Availability</label>
+                        <input type="number" class="form-control" id="start3" name="start3" placeholder="Start">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="end3"> </label>
+                        <input type="number" class="form-control" id="end3" name="end3" placeholder="End">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="address4">Address 5</label>
+                        <input type="text" class="form-control" id="address4" name="address4" placeholder="Enter address">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="start4">Availability</label>
+                        <input type="number" class="form-control" id="start4" name="start4" placeholder="Start">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="end4"> </label>
+                        <input type="number" class="form-control" id="end4" name="end4" placeholder="End">
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" name="numberValue" id="NumberValue" value="5">
+            </div>
+            <button class="btn btn-primary add_form_field">Add Address &nbsp;
+                <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <br><br>
+            <h4>Fleet constraints</h4>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="vehicles">Fleet size</label>
+                    <input type="number" class="form-control" id="vehicles" name="vehicles" value="5" placeholder="Number of vehicles">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="waitingtime">Allowed vehicle waiting time</label>
+                    <input type="number" class="form-control" id="waitingtime" name="waitingtime" value="30" placeholder="Allowed waiting time">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="maxshifttime">Max vehicle shift duration</label>
+                    <input type="number" class="form-control" id="maxshifttime" name="maxshifttime" value="420" placeholder="Max shift time">
+                </div>
             </div>
             <br>
-            <h6>Address 2</h6>
-            <div class="form-group">
-                <input type="text" class="form-control" id="address1" name="address1" placeholder="Enter address">
-            </div>
-            <br>
-            <h6>Address 3</h6>
-            <div class="form-group">
-                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter address">
-            </div>
-            <br>
-            <h6>Address 4</h6>
-            <div class="form-group">
-                <input type="text" class="form-control" id="address3" name="address3" placeholder="Enter address">
-            </div>
-            <br>
-            <h6>Address 5</h6>
-            <div class="form-group">
-                <input type="text" class="form-control" id="address4" name="address4" placeholder="Enter address">
-            </div>
-            <br>
-            <input type="hidden" name="numberValue" id="NumberValue" value="5">
-        </div>
-        <button class="btn btn-primary add_form_field">Add Address &nbsp;
-            <span style="font-size:16px; font-weight:bold;">+ </span>
-        </button>
-        <br><br>
-        <div class="form-group">
-            <h6>Fleet size</h6>
-            <div class="col-md-4">
-                <input type="number" class="form-control" id="vehicles" name="vehicles" value="5" placeholder="Number of vehicles">
-            </div>
-            <br>
-            <h6>Allowed vehicle waiting time</h6>
-            <div class="col-md-4">
-                <input type="number" class="form-control" id="waitingtime" name="waitingtime" value="30" placeholder="Allowed waiting time">
-            </div>
-            <br>
-            <h6>Max vehicle shift duration</h6>
-            <div class="col-md-4">
-                <input type="number" class="form-control" id="maxshifttime" name="maxshifttime" value="420" placeholder="Max shift time">
-            </div>
-            <br>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button><br><br>
-    </form>
+            <button type="submit" class="btn btn-primary">Submit</button><br><br>
+        </form>
+    </div>
     {% if res %}
+    <div class="container" style="margin-bottom: 30px; padding: 20px 20px 20px 20px; border: 5px solid green;">
         <h1>Result</h1>
         <p>Status: success</p>
         <h4>Routes</h4>
         {% for result in res %}
             <p>{{ result }}</p>
         {% endfor %}
+    </div>
     {% endif %}
 
     <script>
@@ -82,7 +136,7 @@
             $(add_button).click(function(e) {
                 e.preventDefault();
                 if (x < max_fields) {
-                    $(wrapper).append(`<div><h6>Address ${x+1}</h6><div class="form-group"><input type="text" class="form-control" id="address${x}" name="address${x}" placeholder="Enter address"></div><a href="#" class="delete">Delete</a><br><br></div>`);
+                    $(wrapper).append(`<div><div class="row"><div class="form-group col-md-8"><label for="address0">Address ${x+1}</label><input type="text" class="form-control" id="address${x}" name="address${x}" placeholder="Enter address"></div><div class="form-group col-md-2"><label for="start${x}">Availability</label><input type="number" class="form-control" id="start${x}" name="start${x}" placeholder="Start"></div><div class="form-group col-md-2"><label for="end${x}"> </label><input type="number" class="form-control" id="end${x}" name="end${x}" placeholder="End"></div></div><a href="#" class="delete">Delete</a><br><br></div>`);
                     x++;
                 } else {
                     alert('You Reached the limits')
